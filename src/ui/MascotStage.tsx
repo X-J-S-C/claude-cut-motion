@@ -24,8 +24,8 @@ const POS: ReadonlyArray<readonly [number, number, number]> = [
   [f(13.6), 200, 430],
   [f(15.0), 250, 430],
   [f(16.2), 250, 430],
-  [f(16.6), 240, 500],
-  [f(19.6), 240, 500],
+  [f(16.6), 555, 470],
+  [f(19.6), 520, 500],
   [f(21.0), 545, 530],
   [f(22.4), 735, 530],
   [f(26.2), 735, 530],
@@ -81,7 +81,7 @@ const poseAt = (frame: number) => {
     (t >= 19.6 && t <= 22.4);
   const happy = (t >= 13.9 && t <= 15.0) || t >= 23.2;
   return {
-    eyes: happy ? ("closed" as const) : t >= 1.75 && t <= 3.4 ? ("sparkle" as const) : ("oval" as const),
+    eyes: happy ? ("closed" as const) : ("oval" as const),
     blush: t >= 22.4 || (t >= 13.9 && t <= 15.0),
     shadesDown: t >= 18.0 && t < 19.0,
     shades: t >= 22.4,
@@ -146,7 +146,7 @@ export const PointerArmLayer: React.FC = () => {
   const dx = target.x - sx;
   const dy = target.y - sy;
   const len = Math.hypot(dx, dy) || 1;
-  const clamped = Math.min(320, Math.max(20, len));
+  const clamped = Math.min(900, Math.max(20, len));
   const ex = sx + (dx / len) * clamped;
   const ey = sy + (dy / len) * clamped;
 

@@ -86,7 +86,10 @@ export const PhonePreview: React.FC = () => {
           {scene === "disco" && <DiscoDancers frame={frame} />}
           {phoneCaptionOn(frame) && <CaptionOverlay frame={frame} />}
 
-          {/* notch */}
+          {/* 对焦中: the reference blurs the preview and drops a viewfinder on it (5.2-6.6 s) */}
+        <FocusPull frame={frame} />
+
+        {/* notch */}
           <div
             style={{
               position: "absolute",
@@ -382,6 +385,84 @@ const SocialLayer: React.FC<{ frame: number }> = ({ frame }) => {
           />
         );
       })}
+    </div>
+  );
+};
+
+
+/** Localised focus-pull gag on the phone screen (replaces a full-frame scrim). */
+const FocusPull: React.FC<{ frame: number }> = ({ frame }) => {
+  const t = frame / 30;
+  if (t < 5.2 || t > 6.7) return null;
+  const k = Math.min(1, (t - 5.2) / 0.25) * Math.min(1, Math.max(0, (6.7 - t) / 0.25));
+  const blurPx = 5.5 * Math.min(1, Math.max(0, (6.5 - t) / 1.2));
+  return (
+    <div style={{ position: "absolute", inset: 0, opacity: k }}>
+      {/* the blur itself */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(240,236,226,0.30)",
+          backdropFilter: `blur(${blurPx.toFixed(2)}px)`,
+        }}
+      />
+      {/* viewfinder corner brackets */}
+      <svg width="100%" height="100%" viewBox="0 0 191 321" preserveAspectRatio="none" style={{ position: "absolute", inset: 0 }}>
+        <g stroke="#fdfbf4" strokeWidth="3" fill="none" strokeLinecap="round">
+          <path d="M18 46 v-16 h18" />
+          <path d="M155 30 h18 v16" />
+          <path d="M173 268 v16 h-18" />
+          <path d="M36 284 h-18 v-16" />
+        </g>
+      </svg>
+      {/* spinner ring */}
+      <svg
+        width="44"
+        height="44"
+        viewBox="0 0 44 44"
+        style={{
+          position: "absolute",
+          left: 191 / 2 - 22,
+          top: 96,
+          transform: `rotate(${frame * 12}deg)`,
+        }}
+      >
+        <circle cx="22" cy="22" r="15" fill="none" stroke="rgba(253,251,244,0.55)" strokeWidth="4" />
+        <path d="M22 7 a15 15 0 0 1 15 15" fill="none" stroke="#fdfbf4" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 152,
+          width: "100%",
+          textAlign: "center",
+          fontFamily: FONT_UI,
+          fontSize: 26,
+          fontWeight: 700,
+          color: "#fdfbf4",
+          textShadow: "0 2px 0 rgba(31,26,20,0.35)",
+        }}
+      >
+        对焦中。。
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 196,
+          width: "100%",
+          textAlign: "center",
+          fontFamily: FONT_UI,
+          fontSize: 12,
+          fontWeight: 500,
+          color: "#f6f2ea",
+          opacity: 0.9,
+        }}
+      >
+        这段在发呆 zzz
+      </div>
     </div>
   );
 };

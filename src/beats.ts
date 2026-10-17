@@ -169,12 +169,12 @@ export const sliderValues = (frame: number) => {
   const t = frame / FPS;
   return {
     flash: t < 16.2 ? 0 : Math.min(70, ((t - 16.2) / 0.8) * 70),
-    // 100 -> 225 (overshoot gag) -> back to 110
+    // 100 -> 225 by 17.0 (the literal number is on screen) -> "爆表!!" 18.0-19.0 -> 110
     saturation:
-      t < 17.0
+      t < 16.2
         ? 100
-        : t < 17.8
-          ? 100 + ((t - 17.0) / 0.8) * 125
+        : t < 17.0
+          ? 100 + ((t - 16.2) / 0.8) * 125
           : t < 18.2
             ? 225
             : t < 19.0
@@ -205,13 +205,10 @@ export const sliderText = (key: "flash" | "saturation" | "punch" | "speed", v: n
 export type SceneId = "empty" | "night" | "ramen" | "corgi" | "disco";
 export const SCENES: ReadonlyArray<{ t: number; scene: SceneId }> = [
   { t: 0, scene: "empty" },
-  { t: 3.05, scene: "night" },
-  { t: 6.9, scene: "ramen" },
-  { t: 11.4, scene: "disco" },
-  { t: 13.2, scene: "corgi" },
-  { t: 13.9, scene: "disco" },
-  { t: 21.7, scene: "corgi" },
-  { t: 23.4, scene: "disco" },
+  { t: 3.05, scene: "night" }, // 夜景 holds the opening
+  { t: 5.2, scene: "ramen" }, // 拉面 arrives with the focus-pull gag (t=5.5 in the reference)
+  { t: 11.0, scene: "corgi" }, // 柴犬 carries the 前方高能预警 + 已修正 beat
+  { t: 14.0, scene: "disco" }, // disco runs to the end (23.0 / 28.5 are both disco)
 ];
 
 export const sceneAt = (frame: number): SceneId => {
@@ -224,5 +221,15 @@ export const sceneAt = (frame: number): SceneId => {
 /** 前方高能预警 caption inside the phone: on 13.6–14.0 and 21.8–23.4 (S22) */
 export const phoneCaptionOn = (frame: number) => {
   const t = frame / FPS;
-  return (t >= 13.6 && t < 14.0) || (t >= 21.8 && t < 23.4);
+  return t >= 13.0 && t < 14.0;
+};
+
+/** 0..1 blow-out while the 饱和度 gag peaks (whole-frame saturate, 17.0-19.0 s). */
+export const saturationHype = (frame: number) => {
+  const t = frame / FPS;
+  if (t < 16.9) return 0;
+  if (t < 17.2) return (t - 16.9) / 0.3;
+  if (t < 18.4) return 1;
+  if (t < 19.0) return 1 - (t - 18.4) / 0.6;
+  return 0;
 };

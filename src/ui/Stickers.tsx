@@ -133,30 +133,6 @@ export const Stickers: React.FC = () => {
         </div>
       </Sticker>
 
-      {/* S02 对镜中 glitch card [low-confidence text] */}
-      {t >= 5.2 && t <= 6.1 && (
-        <div style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
-          <div style={{ position: "absolute", inset: 0, background: "rgba(120,120,120,0.55)", backdropFilter: "blur(6px)" }} />
-          <div
-            style={{
-              position: "absolute",
-              left: 500,
-              top: 300,
-              width: 300,
-              textAlign: "center",
-              fontFamily: FONT_DISPLAY,
-              fontSize: 30,
-              fontWeight: 700,
-              color: "#ffffff",
-            }}
-          >
-            对镜中
-          </div>
-          <div style={{ position: "absolute", left: 0, top: 210, width: 1280, height: 5, background: "rgba(255,80,120,0.35)" }} />
-          <div style={{ position: "absolute", left: 0, top: 380, width: 1280, height: 3, background: "rgba(80,200,255,0.35)" }} />
-        </div>
-      )}
-
       {/* S03 已在局部预览 */}
       <Sticker tIn={5.9} tOut={6.5} cx={255} cy={412}>
         <span style={{ fontFamily: FONT_UI, fontSize: 9, color: "#8c8478" }}>已在局部预览</span>
@@ -216,7 +192,7 @@ export const Stickers: React.FC = () => {
       </Sticker>
 
       {/* S08 Ctrl+Z keycap */}
-      <Sticker tIn={14.6} tOut={16.0} cx={272} cy={460} rotate={-3}>
+      <Sticker tIn={12.95} tOut={14.05} cx={318} cy={452} rotate={-3}>
         <div
           style={{
             padding: "8px 16px 11px",
@@ -235,7 +211,7 @@ export const Stickers: React.FC = () => {
       </Sticker>
 
       {/* S09 已修正 stamp */}
-      <Sticker tIn={14.8} tOut={16.0} cx={346} cy={421} rotate={-10}>
+      <Sticker tIn={13.15} tOut={14.05} cx={392} cy={404} rotate={-10}>
         <div
           style={{
             padding: "4px 14px 6px",
@@ -256,7 +232,7 @@ export const Stickers: React.FC = () => {
       </Sticker>
 
       {/* S10 撤销! */}
-      <Sticker tIn={15.4} tOut={16.1} cx={802} cy={430} rotate={-6}>
+      <Sticker tIn={13.55} tOut={14.1} cx={806} cy={398} rotate={-6}>
         <Brush size={30} color="#3e8e5a" strokeColor="#ffffff" strokeW={3}>
           撤销!
         </Brush>

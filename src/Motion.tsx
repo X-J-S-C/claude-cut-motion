@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { appOpacity, DESIGN_HEIGHT, DESIGN_WIDTH, FPS } from "./beats";
+import { appOpacity, DESIGN_HEIGHT, DESIGN_WIDTH, FPS, saturationHype } from "./beats";
 import { WINDOW } from "./layout";
 import { popScale, prog } from "./anim";
 import { CANVAS, INK, PAPER } from "./theme";
@@ -39,6 +39,9 @@ const entrance = (frame: number, tIn: number) => {
 export const Motion: React.FC = () => {
   const frame = useCurrentFrame();
   const appK = appOpacity(frame);
+  // the reference blows the whole frame out while the 饱和度 slider is maxed
+  const hype = saturationHype(frame);
+  const grade = hype > 0.001 ? `saturate(${(1 + 0.9 * hype).toFixed(3)}) contrast(${(1 + 0.06 * hype).toFixed(3)})` : undefined;
   // the window border draws itself on behind the code card (B02)
   const shellK = prog(frame, f(0.35), f(0.66));
 
@@ -46,6 +49,7 @@ export const Motion: React.FC = () => {
     <AbsoluteFill style={{ background: PAPER, overflow: "hidden" }}>
       <AbsoluteFill style={{ transform: "scale(1.5)", transformOrigin: "0 0", width: DESIGN_WIDTH, height: DESIGN_HEIGHT }}>
         <Camera>
+          <div style={{ position: "absolute", inset: 0, filter: grade }}>
           {/* paper */}
           <div
             style={{
@@ -138,6 +142,7 @@ export const Motion: React.FC = () => {
           {/* ---------------- annotations ---------------- */}
           <Stickers />
           <Confetti />
+          </div>
         </Camera>
       </AbsoluteFill>
     </AbsoluteFill>

@@ -78,7 +78,7 @@ export const ADJ_TITLE = { x: 1042, y: 80 };
 export const ADJ_HAIRLINE = { y: 99.3, x0: 1042, x1: 1244 };
 export const ADJ_ROWS = [
   { label: "闪光", cy: 159, min: 0, max: 100, tmin: 0, tmax: 100, from: 0, to: 70 },
-  { label: "饱和度", cy: 219, min: 0, max: 250, tmin: 0, tmax: 250, from: 100, to: 110 },
+  { label: "饱和度", cy: 219, min: 0, max: 250, tmin: 0, tmax: 200, from: 100, to: 110 },
   { label: "缩放冲击", cy: 279, min: 0, max: 60, tmin: 0, tmax: 100, from: 0, to: 60 },
   { label: "速度", cy: 339, min: 0.5, max: 2, tmin: 0, tmax: 2, from: 1.0, to: 1.0 },
 ];

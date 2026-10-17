@@ -122,7 +122,7 @@ export const AdjustPanel: React.FC = () => {
                 width: Math.max(2, trackW * ratio),
                 height: TRACK_H,
                 borderRadius: TRACK_H / 2,
-                background: SLIDER_TEAL,
+                background: hype ? "#d9453a" : SLIDER_TEAL,
                 border: `1.5px solid ${INK}`,
                 boxSizing: "border-box",
               }}
@@ -136,7 +136,7 @@ export const AdjustPanel: React.FC = () => {
                 height: 20,
                 borderRadius: 12,
                 background: "#ffffff",
-                border: `2px solid ${INK}`,
+                border: `2px solid ${hype ? "#d9453a" : INK}`,
                 boxSizing: "border-box",
                 ...wobble(60 + i),
               }}

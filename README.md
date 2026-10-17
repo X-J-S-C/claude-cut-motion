@@ -154,6 +154,16 @@ scripts/
 | 4 | `BONK!` is anchored over the **right panel** (canvas ≈ (1000, 310)) rather than the spec's sticker bbox (500–1000, 320–545). | With the 1.26–1.39 camera push at 25.3 s, only that anchor puts it over the 调整 panel's lower half, which is what the reference frame shows (checklist G3). |
 | 5 | The 0.30–0.65 s mascot cameo in front of the code card is dropped; the mascot enters at 1.55 s. | Reference frames t = 0.00/0.50 show no mascot at all. |
 | 6 | Audio waveform, thumbnails and the four illustrations are original flat-vector drawings, not copies of the reference's art. | Asset-free / no-reference-content rule. Compositions and colours match; exact line work does not. |
+| 7 | **Four decorative strings from the reference are not reproduced**: `唰!`, `拜拜~`, `哐当!`, `稳了`. | They are hand-lettered flourishes on beats we cover with other annotations; adding them without the reference's exact glyphs would have made the frame busier than the original. |
+| 8 | The mascot's **walk dust puffs** (two small white ellipses behind the feet) are not drawn. | Cosmetic; the walk cycle (leg swing + body dip) is there. |
+| 9 | The reference's per-element **ink wobble** (each stroke hand-drawn with a 1–2 px wobble) is approximated with a deterministic ±1.5 px / ±0.6° offset per element, not per stroke. | Reproducing per-stroke wobble needs the original pen data. |
+| 10 | Phone-scene **cuts are hard cuts**; the reference adds a 2–4 frame white flash on some of them. | Timing is identical; the flash is a 3-frame effect we kept only for the montage cut at 16.0 s. |
+
+Implemented rather than deviated (worth stating, because earlier drafts of this README listed them as gaps):
+the 饱和度 overshoot (**100 % → 225 % → `爆表!!` → 110 %**) with a red slider and a whole-frame saturation
+blow-out between 17.0 s and 19.0 s; the phone's animated view counter (**1.5w → 9.4w → 10.1w → 10.2w**);
+and the focus-pull gag (`对焦中。。` + viewfinder brackets + spinner + `这段在发呆 zzz`) rendered as a
+blur **inside the phone screen** rather than a full-frame scrim.
 
 ## Verification
 
