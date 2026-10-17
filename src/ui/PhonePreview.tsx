@@ -253,7 +253,7 @@ const DiscoDancers: React.FC<{ frame: number }> = ({ frame }) => {
 /** 前方高能预警 overlay on the corgi shot. */
 const CaptionOverlay: React.FC<{ frame: number }> = ({ frame }) => {
   const t = frame / 30;
-  const appear = Math.min(1, Math.max(0, (t - 13.6) / 0.2));
+  const appear = Math.min(1, Math.max(0, (t - 13.0) / 0.2));
   return (
     <div
       style={{

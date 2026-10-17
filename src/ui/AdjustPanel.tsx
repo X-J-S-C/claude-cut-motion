@@ -76,7 +76,7 @@ export const AdjustPanel: React.FC = () => {
         const labelTop = ROW_TOP_OFFSET + i * ROW_PITCH;
         const trackTop = labelTop + 32;
         const knobX = trackL + ratio * trackW;
-        const hype = key === "saturation" && t >= 18.0 && t < 19.0;
+        const maxed = key === "saturation" && t >= 17.0 && t < 19.0;
         return (
           <React.Fragment key={row.label}>
             <Txt
@@ -94,12 +94,12 @@ export const AdjustPanel: React.FC = () => {
               y={labelTop}
               w={86}
               size={15}
-              weight={hype ? 700 : 400}
-              color={hype ? "#e14654" : "#2a2420"}
+              weight={t >= 18.0 && t < 19.0 ? 700 : 400}
+              color={t >= 18.0 && t < 19.0 ? "#e14654" : "#2a2420"}
               align="right"
               font={FONT_UI}
             >
-              {hype ? "爆表!!" : sliderText(key, v)}
+              {t >= 18.0 && t < 19.0 ? "爆表!!" : sliderText(key, v)}
             </Txt>
             <div
               style={{
@@ -122,7 +122,7 @@ export const AdjustPanel: React.FC = () => {
                 width: Math.max(2, trackW * ratio),
                 height: TRACK_H,
                 borderRadius: TRACK_H / 2,
-                background: hype ? "#d9453a" : SLIDER_TEAL,
+                background: maxed ? "#d9453a" : SLIDER_TEAL,
                 border: `1.5px solid ${INK}`,
                 boxSizing: "border-box",
               }}
@@ -136,7 +136,7 @@ export const AdjustPanel: React.FC = () => {
                 height: 20,
                 borderRadius: 12,
                 background: "#ffffff",
-                border: `2px solid ${hype ? "#d9453a" : INK}`,
+                border: `2px solid ${maxed ? "#d9453a" : INK}`,
                 boxSizing: "border-box",
                 ...wobble(60 + i),
               }}
